@@ -1,7 +1,7 @@
 # Django-Project
 Group project for Software Engineering course at California State University Los Angeles
 
-##Features that are to be added.
+### Features that are to be added.
 (1) AboutUS
 
 (2) Search a book
