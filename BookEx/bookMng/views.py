@@ -126,7 +126,7 @@ def about_us(request):
         'Angel': ['Computer Science', 'https://github.com/AngelV129'],
         'Mychal Salgado': ['Computer Science', 'https://google.com'],
         'Portia Wu': ['Computer Science', 'https://github.com/portiawuuu'],
-        'Alexander Voisan': ['Computer Science', 'https://google.com'],
+        'Alexander Voisan': ['Computer Science', 'https://github.com/ajcoolman'],
         'Guang Wu': ['Computer Science', 'https://google.com'],
         'Fernando Torres': ['Computer Science', 'https://github.com/TACONACHOLIBRE']
     }
