@@ -2,7 +2,7 @@
 Group project for Software Engineering course at California State University Los Angeles
 
 ### Features that are to be added.
-(1) AboutUS --- Done
+(1) AboutUS --- need to update 3 github links
 
 (2) Search a book
 
