@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+About Us
+{% endblock title %}
+
+{% block sidenav %}
+  {% for item in item_list %}
+       <li>
+           <a href="{{ item.link }}"> {{ item.item }} </a>
+       </li>
+  {% endfor %}
+{% endblock sidenav %}
+
+{% block content %}
+<h1 align="center"> About Us </h1>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Major</th>
+            <th scope="col">GitHub Account </th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        {% for key, values in team.items %}
+            <tr>
+                <td>
+                    {{ key }}
+                </td>
+
+                <td>{{ values.0 }}</td>
+                <td><a href={{ values.1 }}>LINK</a></td>
+
+
+            </tr>
+
+        {% endfor %}
+    </tbody>
+
+       {% comment %} <tr>
+           <td>
+               {{ book.name }}
+           </td>
+           <td>
+               <img src="{% static book.pic_path %}" width="100" height="100"/>
+           </td>
+           <td>
+               {{ book.price }}
+           </td>
+           <td>
+               {{ book.username }}
+           </td>
+       </tr>
+        <tr>
+            <td>
+                {{ book.web }}
+            </td>
+            <td>
+                {{ book.publishdate }}
+            </td>
+        </tr> {% endcomment %}
+
+</table>
+{% endblock content %}
