@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -11,48 +10,112 @@
         {% endblock title %}
     </title>
     <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<header>
-    <div>
-        <img src="{% static 'logo.jpg' %}" width="100" height="100" />
-        <span style="float: right;">
-            {% if user.is_authenticated %}
-                    {{ user.username }}
-                    <a href="{% url 'logout' %}?next=/">Logout</a>
-            {% else %}
-                Not Logged in
-                <a href="{% url 'login' %}?next=/">Login</a>
-            {% endif %}
-        </span>
+{#All the other pages should no longer require the 'dide-navbar as it should always display#}
+{#on all pages by the base.html#}
 
-    </div>
-        <img src="{% static 'banner.jpg' %}" />
-</header>
-<aside id="leftsidebar">
-    <nav id="nav">
-        <ul>
-            {% block sidenav %}
-            <li>
-                menu 1
-            </li>
-            <li>
-                menu 2
-            </li>
-            <li>
-                menu 3
-            </li>
-            {% endblock sidenav %}
-        </ul>
+
+{#    <header>#}
+{#        <div>#}
+{#            <img src="{% static 'logo.jpg' %}" width="35" height="35" />#}
+{#            <span style="float: right;">#}
+{#                {% if user.is_authenticated %}#}
+{#                        {{ user.username }}#}
+{#                        <a href="{% url 'logout' %}?next=/">Logout</a>#}
+{#                {% else %}#}
+{#                    Not Logged in#}
+{#                    <a href="{% url 'login' %}?next=/">Login</a>#}
+{#                {% endif %}#}
+{#            </span>#}
+{##}
+{#        </div>#}
+{#            <img src="{% static 'banner.jpg' %}" />#}
+{#    </header>#}
+
+{#this is the entire navbar for each Webpage#}
+    <nav class="navbar text-warning navbar-expand-sm bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand-sm-1" href="/">
+                <img src="{% static 'logo.jpg' %}" width="35" height="35" alt="">
+            </a>
+{#        Navbar items#}
+            <div class="collapse navbar-collapse ">
+                <ul class="navbar-nav  mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="\displaybooks">Display Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="\search_books">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="\postbook">Post Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="\faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="\about_us">About Us</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-warning" href="\">Home</a>
+                    </li>
+                </ul>
+            </div>
+            {# collapsable navbar#}
+            <div class="container-sm-2">
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a class="dropdown-toggle btn text-warning" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item text-center" href="\mybooks">
+                                    My Books
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-center" href="\messagebox\incoming">
+                                    Messages
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-center" href="\shopping_cart">
+                                    Shopping Cart
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-center" href="\wish_list">
+                                    Wish List
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-center" href="{% url 'logout' %}?next=/">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    Not Logged In
+                    <a href="{% url 'login' %}?next=/">Login</a>
+                {% endif %}
+            </div>
+        </div>
     </nav>
-</aside>
-<section>
-    {% block content %}
-         <h1 align="center"> This is Book Exchange </h1>
-    {% endblock content %}
-</section>
-<footer id="footer">
-    2022 Spring CS3337 Class Project
-</footer>
+
+    <section>
+        {% block content %}
+             <h1 align="center"> This is Book Exchange </h1>
+        {% endblock content %}
+    </section>
+    <footer id="footer">
+        2022 Spring CS3337 Class Project
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>

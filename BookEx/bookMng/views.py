@@ -1,6 +1,11 @@
 from django.shortcuts import render
 
 # Create your views here.
+# ***********************************************************
+# TO CLASS MATES GROUP 5
+#  ADD YOUR NEW DEFINITIONS AT THE BOTTOM
+# ************************************************************
+
 
 from django.http import HttpResponse
 
@@ -43,13 +48,13 @@ def postbook(request):
         if 'submitted' in request.GET:
             submitted = True
         return render(request,
-                  "bookMng/postbook.html",
-                  {
-                      'form': form,
-                      'item_list': MainMenu.objects.all(),
-                      'submitted': submitted
-                  }
-                  )
+                      "bookMng/postbook.html",
+                      {
+                          'form': form,
+                          'item_list': MainMenu.objects.all(),
+                          'submitted': submitted
+                      }
+                      )
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -76,8 +81,6 @@ class Register(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
-
-
 @login_required(login_url=reverse_lazy('login'))
 def book_detail(request, book_id):
     book = Book.objects.get(id=book_id)
@@ -90,9 +93,10 @@ def book_detail(request, book_id):
                   }
                   )
 
+
 @login_required(login_url=reverse_lazy('login'))
 def mybooks(request):
-    books = Book.objects.filter(username= request.user)
+    books = Book.objects.filter(username=request.user)
     for b in books:
         b.pic_path = b.picture.url[14:]
     return render(request,
@@ -103,6 +107,7 @@ def mybooks(request):
                   }
                   )
 
+
 @login_required(login_url=reverse_lazy('login'))
 def book_delete(request, book_id):
     book = Book.objects.get(id=book_id)
@@ -112,5 +117,22 @@ def book_delete(request, book_id):
                   {
                       'item_list': MainMenu.objects.all(),
                       'book': book
+                  }
+                  )
+
+
+def about_us(request):
+    team = {
+        'Angel': ['Computer Science', 'https://github.com/AngelV129'],
+        'Mychal Salgado': ['Computer Science', 'https://google.com'],
+        'Portia Wu': ['Computer Science', 'https://github.com/portiawuuu'],
+        'Alexander Voisan': ['Computer Science', 'https://google.com'],
+        'Guang Wu': ['Computer Science', 'https://google.com'],
+        'Fernando Torres': ['Computer Science', 'https://github.com/TACONACHOLIBRE']
+    }
+    return render(request, 'bookMng/about_us.html',
+                  {
+                      'team': team,
+                      'item_list': MainMenu.objects.all(),
                   }
                   )
