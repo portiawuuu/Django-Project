@@ -2,11 +2,11 @@
 Group project for Software Engineering course at California State University Los Angeles
 
 ### Features that are to be added.
-(1) AboutUS
+(1) AboutUS --- Done
 
 (2) Search a book
 
-(3) Reformat
+(3) Reformat --- In Progress
 
 https://www.w3schools.com/css/css_navbar.asp (Links to an external site.)
 
