@@ -63,11 +63,9 @@
                     </li>
                 </ul>
             </div>
-
             {# collapsable navbar#}
             <div class="container-sm-2">
                 {% if user.is_authenticated %}
-                    <div class="row">
                     <div class="dropdown">
                         <a class="dropdown-toggle btn text-warning" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ user.username }}
@@ -100,7 +98,6 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
                     </div>
                 {% else %}
                     Not Logged In
