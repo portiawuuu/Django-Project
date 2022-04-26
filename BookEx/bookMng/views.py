@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import SearchForm
 
 # Create your views here.
 # ***********************************************************
@@ -136,3 +137,23 @@ def about_us(request):
                       'item_list': MainMenu.objects.all(),
                   }
                   )
+
+
+@login_required(login_url=reverse_lazy('login'))
+def search_books(request):
+    if request.method == 'POST':
+
+        query = request.POST['query']
+        books = Book.objects.filter(name__contains=query)
+
+        for b in books:
+            b.pic_path = b.picture.url[14:]
+
+        return render(request,
+                      'bookMng/search_books.html',
+                      {
+                          'books': books,
+                          'query': query
+                      })
+    else:
+        return render(request, 'bookMng/search_books.html')
