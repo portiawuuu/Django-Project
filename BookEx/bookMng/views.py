@@ -157,3 +157,12 @@ def search_books(request):
                       })
     else:
         return render(request, 'bookMng/search_books.html')
+
+
+@login_required(login_url=reverse_lazy('login'))
+def shopping_cart(request):
+    cart = {}
+    return render(request, 'bookMng/shopping_cart.html', {
+                        'cart': cart
+                    })
+
