@@ -33,3 +33,10 @@
 }
 
 /*.navbar-nav > li > .dropdown-menu { background-color: red; }*/
+/*search books */
+/*background: rgb(235,225,60);
+background: linear-gradient(90deg, rgba(235,225,60,1) 34%, rgba(197,201,71,1) 47%, rgba(235,225,60,1) 100%);*/
+#header{
+    background: rgb(235,225,60);
+background: linear-gradient(90deg, rgba(235,225,60,1) 34%, rgba(197,201,71,1) 47%, rgba(235,225,60,1) 100%);
+}

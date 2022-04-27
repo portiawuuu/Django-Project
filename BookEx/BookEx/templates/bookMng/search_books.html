@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Search Books
+{% endblock title %}
+
+{% block content %}
+<div class='container-fluid mb-3' id=header>
+<h1 align="center">Search Books</h1>
+    <form class="form-inline justify-content-center mt-4" action="" enctype="multipart/form-data" method="post" novalidate>
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col-sm-5">
+                <input type="search" class="form-control" name="query"
+                    placeholder="Search books" maxlength="100" minlength="1" >
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-dark">
+                    <img src="{%  static 'yellow_lens.png' %}"  width="30" />
+                    </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% if query %}
+    <h5>Results for "{{ query }}"</h3>
+<br>
+
+<div class='container-md align-content-center'>
+    <table class="table table-hover table-regular bg-light mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center" scope="col">Name</th>
+                <th class="text-center" scope="col">Cover</th>
+                <th class="text-center" scope="col">Seller</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td class="text-center align-middle">
+                    <a href="{% url 'book_detail' book.id %}"> {{ book.name }} </a>
+                </td>
+                <td class="text-center align-middle">
+                    <img src="{% static book.pic_path %}" width="60" height="90">
+                </td>
+                <td class="text-center align-middle">
+                    {{ book.username }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock content %}
