@@ -14,6 +14,7 @@ from .models import MainMenu
 from .forms import BookForm
 from django.http import HttpResponseRedirect
 from .models import Book
+from .models import WishList
 
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
@@ -157,3 +158,31 @@ def search_books(request):
                       })
     else:
         return render(request, 'bookMng/search_books.html')
+
+
+@login_required(login_url=reverse_lazy('login'))
+def wish_list(request):
+    wish_list = WishList.objects.filter(username=request.user)
+    books_to_save = []
+
+    for book in wish_list:
+        book = Book.objects.get(id=book.book_id)
+        book.pic_path = book.picture.url[14:]
+        books_to_save.append(book)
+
+    return render(request, 'bookMng/wish_list.html',
+                  {
+                      'books': books_to_save,
+                  })
+
+
+@login_required(login_url=reverse_lazy('login'))
+def add_to_wish_list(request, book_id):
+    wish_list.objects.create(book_id=book_id, username=request.user)
+    return HttpResponseRedirect('/displaybooks')
+
+@login_required(login_url=reverse_lazy('login'))
+def remove_from_wish_list(request, book_id):
+    wish_list.objects.get(book_id=book_id).delete()
+    return HttpResponseRedirect('/wish_list')
+

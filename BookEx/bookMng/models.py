@@ -21,5 +21,14 @@ class Book(models.Model):
     pic_path = models.CharField(max_length=300, editable=False, blank=True)
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
+
+    def __str__(self):
+        return str(self.id)
+
+
+class WishList(models.Model):
+    book_id = models.IntegerField(blank=True, null=True, )
+    username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+
     def __str__(self):
         return str(self.id)
